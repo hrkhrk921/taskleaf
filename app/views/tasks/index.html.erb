@@ -16,7 +16,10 @@
               <% @tasks.each do |task| %>
               <td><%= link_to task.name,"/tasks/#{task.id}"%></td>
               <td><%= task.created_at %></td>
-              <td><%= link_to "編集","/tasks/#{task.id}/edit",class:"btn btn-primary mr-3" %></td>
+              <td>
+                <%= link_to "編集","/tasks/#{task.id}/edit",class:"btn btn-primary mr-3" %>
+                <%= link_to "削除",task,method: :delete,data:{confirm: "タスク「#{task.name}」を削除します。よろしいですか？"},class:"btn btn-danger" %>
+              </td>
             </tr>
               <% end %>
           </tbody>
