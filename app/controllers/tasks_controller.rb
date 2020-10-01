@@ -12,6 +12,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @task=Task.find(params[:id])
   end
 
   def create
@@ -22,6 +23,13 @@ class TasksController < ApplicationController
     else
       render("/tasks/new")
     end
+  end
+
+  def update
+    @task =Task.find(params[:id])
+    @task.update(task_params)
+    flash[:notice]="タスク「#{@task.name}」を更新しました。"
+    redirect_to("/")
   end
 
   private
