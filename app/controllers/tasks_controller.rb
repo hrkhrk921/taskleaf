@@ -15,7 +15,8 @@ class TasksController < ApplicationController
   def create
     @task= Task.new(task_params)
     if @task.save
-    redirect_to("/"),notice: "タスク「#{@task.name}」を登録しました。"
+      flash[:notice]="タスク「#{@task.name}」を登録しました。"
+      redirect_to("/")
     else
       render("/tasks/new")
     end
