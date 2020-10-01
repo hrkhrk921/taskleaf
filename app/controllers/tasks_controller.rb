@@ -14,8 +14,11 @@ class TasksController < ApplicationController
 
   def create
     @task= Task.new(task_params)
-    @task.save
+    if @task.save
     redirect_to("/"),notice: "タスク「#{@task.name}」を登録しました。"
+    else
+      render("/tasks/new")
+    end
   end
 
   private
