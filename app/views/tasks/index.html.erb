@@ -8,6 +8,7 @@
             <tr>
               <th><%= Task.human_attribute_name(:name) %></th>
               <th><%= Task.human_attribute_name(:created_at) %></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -15,6 +16,7 @@
               <% @tasks.each do |task| %>
               <td><%= link_to task.name,"/tasks/#{task.id}"%></td>
               <td><%= task.created_at %></td>
+              <td><%= link_to "編集","/tasks/#{task.id}/edit",class:"btn btn-primary mr-3" %></td>
             </tr>
               <% end %>
           </tbody>
