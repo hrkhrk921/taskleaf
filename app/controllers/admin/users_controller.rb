@@ -1,7 +1,22 @@
 class Admin::UsersController < ApplicationController
+
+  def index
+    @user = User.all
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
   def new
     @user = User.new
   end
+
+  def show
+    @user = User.find(params[:id])
+  end
+
+
 
   def create
     @user = User.new(user_params)
@@ -13,14 +28,23 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def edit
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:notice]="ユーザー「#{@user.name}」を更新しました。"
+      redirect_to("admin/users/#{@user.id}")
+    else
+      render("/admins/users/#{@user.id}/edit")
+    end
   end
 
-  def show
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:notice]="ユーザー「#{@user.name}」を削除しました。"
+    redirect_to("/admin/users")
   end
 
-  def index
-  end
 
   private
   def user_params
