@@ -1,5 +1,9 @@
 <div class="container">
   <h1>ユーザー登録</h1>
+  <nav class="nav d-flex justfy-content-end">
+    <%= link_to "一覧","/admin/users/index",class:"nav-link" %>
+    <%= render partial: 'form',locals: {user: @user} %>
+  </nav>
   <%= form_with model:[:admin, @user],local: true do |f| %>
   <div class="form-group">
     <%= f.label :name,"名前" %>
