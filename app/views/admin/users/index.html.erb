@@ -1,3 +1,30 @@
 <div class="container">
   <h1>ユーザー一覧</h1>
+  <%= link_to("新規登録","/admin/users/new"),class:"btn btn-primary" %>
+  <div class="col-md-3">
+    <table class="table table-hover">
+      <thead class="thead-default">
+        <tr></tr>
+        <th><%= User.human_attribute_name(:name) %></th>
+        <th><%= User.human_attribute_name(:email) %></th>
+        <th><%= User.human_attribute_name(:admin) %></th>
+        <th><%= User.human_attribute_name(:created_at) %></th>
+        <th><%= User.human_attribute_name(:updated_at) %></th>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+        <tr></tr>
+        <td><%= link_to user.name,[:admin,user] %></td>
+        <td><%= user.email %></td>
+        <td><%= user.admin? "あり" : "なし" %></td>
+        <td><%= user.created_at %></td>
+        <td><%= user.updated_at %></td>
+        <td>
+          <%= link_to "編集","/admin/users/#{user.id}/edit",class:"btn btn-primary mr-3" %>
+          <%= link_to "削除",[:admin,user],method: :delete,data:{confirm: "ユーザー「#{user.name}」を削除します。よろしいですか？"},class:"btn btn-danger" %>
+        </td>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
