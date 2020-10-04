@@ -49,7 +49,7 @@
         <th>
           <%= link_to "編集","/tasks/#{@task.id}/edit",class:"btn btn-primary mr-3" %>
           <%= link_to "削除",@task,method: :delete,data: {confirm:"タスク「#{@task.name}」を削除します。よろしいですか？"},class:"btn btn-danger"%>
-          </th>
+        </th>
       </tr>
     </tbody>
   </table>
