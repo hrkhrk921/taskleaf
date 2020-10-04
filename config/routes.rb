@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/login" => 'sessions#new'
   namespace :admin do
   	resources :users
   end
