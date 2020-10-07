@@ -7,10 +7,16 @@ class SessionsController < ApplicationController
     if user&.authenticate(session_params[password])
       session[:user_id] = user.id
       flash[:notice] = "ログインしました。"
-      redirect_to "/"
+      redirect_to ("/")
     else
       render :new
     end
+  end
+
+  def destroy
+    reset_session
+    flash[:notice]="ログアウトしました"
+    redirect_to("/")
   end
 
   private
