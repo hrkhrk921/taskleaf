@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :require_admin
 
   def index
-    @user = User.all
+    @users = User.all
   end
 
   def edit
@@ -21,7 +21,7 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if user.save
+    if @user.save
       flash[:notice]="ユーザー「#{@user.name}」を登録しました。"
       redirect_to("/admin/users/#{@user.id}")
     else
