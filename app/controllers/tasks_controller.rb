@@ -16,7 +16,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task= Task.new(task_params)
+    @task= current_user.tasks.new(task_params)
     if @task.save
       flash[:notice]="タスク「#{@task.name}」を登録しました。"
       redirect_to("/")
