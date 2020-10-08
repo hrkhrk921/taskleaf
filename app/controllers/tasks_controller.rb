@@ -12,7 +12,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task=Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def create
@@ -26,14 +26,14 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task =Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
     @task.update(task_params)
     flash[:notice]="タスク「#{@task.name}」を更新しました。"
     redirect_to("/")
   end
 
   def destroy
-    @task=Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
     @task.destroy
     flash[:notice]="タスク「#{@task.name}」を削除しました。"
     redirect_to("/")
