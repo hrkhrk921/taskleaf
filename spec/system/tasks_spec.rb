@@ -11,6 +11,10 @@ describe 'タスク管理機能',type: :system do
     context 'ユーザーAがログインしているとき' do
       before do
         #ユーザーAでログインする
+        visit login_path#visit[URL]=>特定のURLにアクセスする
+        fill_in 'メールアドレス',with: 'a@example.com' #fill_inでテキストフィールドに値を入れるラベルと入力値
+        fill_in 'パスワード',with: 'password'
+        click_button 'ログインする'
       end
 
       it 'ユーザーAが作成したタスクが表示される' do
